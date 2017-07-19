@@ -1,4 +1,4 @@
-var HTMLtoDoItem = '<li><div class="view"><input class="toggle" type="checkbox"><label>%data%</label><button class="destroy">X</button></div></li>';
+var HTMLtoDoItem = '<li class="%classname%"><div class="view"><input class="toggle" type="checkbox"><label>%data%</label><button class="destroy">X</button></div></li>';
 var HTMLeditToDoItem = '<input class="edit" value="%data%">';
 
 /* Hide Footer */

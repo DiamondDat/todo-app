@@ -6,10 +6,12 @@ document.getElementById('input-form').onkeypress = function(e){
     this.value = '';
 
     if(document.querySelector('.btn-complete').classList.contains('selected')) {
-
+      var formattedItem = HTMLtoDoItem.replace("%classname%", 'hidden');
+    } else {
+      var formattedItem = HTMLtoDoItem.replace("%classname%", '');
     }
 
-    var todoItem = HTMLtoDoItem.replace("%data%", itemValue);
+    var todoItem = formattedItem.replace("%data%", itemValue);
     document.getElementById('todo-list').insertAdjacentHTML('beforeend', todoItem);
 
     document.querySelector('footer').style.display = 'block';
