@@ -1,0 +1,129 @@
+/* Wrapper*/
+.wrapper {
+    width: 65%;
+    box-shadow: 0 10px 30px #888888;
+    margin: 0 auto;
+}
+
+/* Form style */
+.form-group {
+    margin-bottom: 0;
+}
+
+.form-group input{
+    height: 75px;
+    border-radius: 0;
+    border-left: 0;
+    border-right: 0;
+}
+
+.form-control:active {
+    outline: none;
+}
+
+input[placeholder] {
+    font-size: 20px;
+    font-style: italic;
+}
+
+/* Todo List */
+
+#todo-list li {
+    list-style-type: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px;
+}
+
+#todo-list li label {
+    margin-left: 30px;
+    font-size: 25px;
+    font-weight: lighter;
+}
+
+input.toggle {
+    margin-left: 20px;
+}
+
+.destroy {
+    float: right;
+    margin-right: 30px;
+    margin-top: 7px;
+    color: red;
+    font-size: 20px;
+    display: none;
+}
+
+.view:hover .destroy {
+    display: block;
+}
+
+.completed {
+    color: #ccc;
+}
+
+.completed label {
+    text-decoration: line-through;
+}
+
+.hidden {
+    display: none;
+}
+
+/* Button style */
+button {
+    background-color: transparent;
+    border: 0;
+    color: #666;
+    font-size: 12px;
+    padding-bottom: 3px;
+}
+
+.btn {
+    margin-bottom: 30px;
+}
+
+.btn:hover {
+    border: 1px solid #d43f3a;
+    background-color: transparent;
+    color: #666;
+    font-size: 14px;
+}
+
+.btn:focus {
+    outline: none;
+}
+
+.selected {
+    border: 1px solid #d43f3a;
+    outline: none;
+}
+
+#btn-clear {
+    padding-top: 6px;
+    display: none;
+}
+
+#btn-clear:hover {
+    text-decoration: underline;
+    border: 0;
+}
+
+/* footer */
+footer {
+    padding: 7px;
+    height: 50px;
+    display: none;
+}
+
+.filters {
+    padding: 0;
+    margin-bottom: 13px;
+}
+
+#item-count {
+    padding-top: 6px;
+    margin-left: 15px;
+    font-size: 15px;
+    font-weight: lighter;
+    color: black;
+}
