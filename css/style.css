@@ -6,11 +6,15 @@
 }
 
 /* Form style */
-.form-group {
+.input-group-addon {
+    border-left: 0;
+    border-radius: 0;
+    background-color: transparent;
     margin-bottom: 0;
+    padding-left: 30px;
 }
 
-.form-group input{
+#input-form {
     height: 75px;
     border-radius: 0;
     border-left: 0;
@@ -24,6 +28,10 @@
 input[placeholder] {
     font-size: 20px;
     font-style: italic;
+}
+
+.col-xs-1 {
+    padding: 0;
 }
 
 /* Todo List */

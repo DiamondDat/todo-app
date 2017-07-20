@@ -52,3 +52,35 @@ document.querySelector('.btn-active').onclick = function() {
   });
 }
 
+/* Clear completed */
+document.getElementById('btn-clear').onclick = function() {
+  document.querySelectorAll('.completed').forEach(function(li) {
+    li.remove();
+  })
+  this.style.display = 'none';
+  document.getElementById('toggle-all').checked = false;
+  if(document.querySelectorAll('.view').length === 0) {
+    hideFooter();
+  }
+  itemCount();
+}
+
+/* Toggle All */
+document.getElementById('toggle-all').onclick = function() {
+  if(this.checked) {
+    document.querySelectorAll('.view').forEach(function(div) {
+      div.parentNode.classList.add('completed');
+      div.querySelector('.destroy').checked = true;
+    });
+    document.getElementById('btn-clear').style.display = "block";
+    itemCount();
+  } else {
+    document.querySelectorAll('.view').forEach(function(div) {
+      div.parentNode.classList.remove('completed');
+      div.querySelector('.destroy').checked = false;
+    });
+    document.getElementById('btn-clear').style.display = "none";
+    itemCount();
+  }
+}
+

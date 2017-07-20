@@ -10,7 +10,9 @@ function hideFooter() {
 
 /* Todo Item count */
 function itemCount() {
-  var count = document.getElementsByClassName('view').length;
+  var uncomplete = document.getElementsByClassName('view').length;
+  var completed = document.getElementsByClassName('completed').length;
+  var count = uncomplete - completed;
   if (document.getElementsByClassName('view').length === 1) {
     var itemCount = '<strong>' + count + '</strong> item left';
   } else {
@@ -41,9 +43,17 @@ function completedItem() {
         if(document.querySelector('.btn-active').classList.contains('selected')) {
           check.parentNode.parentNode.classList.add('hidden');
         }
+        document.getElementById('btn-clear').style.display = 'block';
+        itemCount();
       } else if(document.querySelector('.btn-complete').classList.contains('selected')) {
         check.parentNode.parentNode.classList.remove('completed');
         check.parentNode.parentNode.classList.add('hidden');
+        document.getElementById('btn-clear').style.display = 'none';
+        itemCount();
+      } else {
+        check.parentNode.parentNode.classList.remove('completed');
+        document.getElementById('btn-clear').style.display = 'none';
+        itemCount();
       }
     }
   });
