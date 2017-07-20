@@ -1,4 +1,5 @@
 var HTMLtoDoItem = '<li class="%classname%"><div class="view"><input class="toggle" type="checkbox"><label>%data%</label><button class="destroy">X</button></div><input class="edit" value="%data%" autofocus></li>';
+
 /* Input Todo Item */
 function inputTodoItem(value) {
   if(document.querySelector('.btn-complete').classList.contains('selected')) {
@@ -18,22 +19,20 @@ function editTodoItem() {
     li.ondblclick = function() {
       this.classList.add('editing');
       this.querySelector('.view').style.display = 'none';
-    }
-  });
-  cancelEdit();
-  inputEditItem();
-}
 
-/* Cancel Edit */
-function cancelEdit() {
-  document.querySelectorAll('li').forEach(function(li) {
-    document.onclick = function() {
-      if(li.classList.contains('editing')) {
-        li.classList.remove('editing');
-        li.querySelector('.view').style.display = 'block';
+      document.onclick = function(e) {
+        if(e.target !== li.querySelector('.edit')) {
+          if(li.querySelector('.edit').value === '') {
+            li.remove();
+            itemCount();
+            hideFooter(); };
+          li.classList.remove('editing');
+          li.querySelector('.view').style.display = 'block';
+        }
       }
     }
   });
+  inputEditItem();
 }
 
 /* Input edit item */

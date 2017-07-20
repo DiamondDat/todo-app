@@ -61,14 +61,20 @@ input.toggle {
     display: none;
 }
 
+.editing {
+    padding: 0 !important;
+}
+
 .edit {
     border: 0;
-    margin-left: 50px;
+    margin-left: 58px;
     display: none;
 }
 
 .editing input {
     display: block;
+    height: 60px;
+    width: 90%;
 }
 
 input[value] {
