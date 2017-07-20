@@ -29,7 +29,7 @@ function editTodoItem() {
 function inputEdit(node) {
   node.querySelector('.edit').onkeypress = function(e) {
     if(e.keycode === 13 || e.which === 13) {
-      removeItem(node);
+      removeEditItem(node);
       node.querySelector('label').innerHTML = node.querySelector('.edit').value;
       node.classList.remove('editing');
       node.querySelector('.view').style.display = 'block';
@@ -41,19 +41,20 @@ function inputEdit(node) {
 function cancelEdit(node) {
   document.onclick = function(e) {
     if(e.target !== node.querySelector('.edit')) {
-      removeItem(node);
+      removeEditItem(node);
       node.classList.remove('editing');
       node.querySelector('.view').style.display = 'block';
     }
   }
 }
 
-/* Remove Item */
-function removeItem(node) {
+/* Remove Edit Item */
+function removeEditItem(node) {
   if(node.querySelector('.edit').value === '') {
     node.remove();
     itemCount();
     hideFooter();
+    updateToggleAll()
   }
 }
 
@@ -86,6 +87,7 @@ function removeTodoItem() {
 
       itemCount();
       hideFooter();
+      updateToggleAll()
     }
   });
 }
@@ -111,6 +113,15 @@ function completedItem() {
         document.getElementById('btn-clear').style.display = 'none';
         itemCount();
       }
+    }
+  });
+}
+
+/* Update Toggle All */
+function updateToggleAll() {
+  document.querySelectorAll('.completed').forEach(function(li) {
+    if(li.querySelector('.toggle').checked === true) {
+      document.getElementById('toggle-all').checked = true;
     }
   });
 }
