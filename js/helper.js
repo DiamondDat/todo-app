@@ -1,6 +1,41 @@
 var HTMLtoDoItem = '<li class="%classname%"><div class="view"><input class="toggle" type="checkbox"><label>%data%</label><button class="destroy">X</button></div></li>';
 var HTMLeditToDoItem = '<input class="edit" value="%data%">';
 
+/* Edit Todo Item */
+function editTodoItem() {
+  document.querySelectorAll('.view').forEach(function(div) {
+    var tmp = div;
+    div.ondblclick = function() {
+      var itemValue = div.querySelector('label').innerHTML;
+      var editItem = HTMLeditToDoItem.replace("%data%", itemValue);
+
+      this.innerHTML = editItem;
+    }
+    // inputEditItem();
+  });
+}
+
+/* Input edit item */
+function inputEditItem() {
+  document.querySelectorAll('.view').forEach(function(div) {
+   div.querySelector('.edit').onkeypress = function(e) {
+    if(e.keycode === 13) {
+      var itemValue = this.value;
+      if (itemValue === '') { div.parentNode.remove(); }
+
+      if(document.querySelector('.btn-complete').classList.contains('selected')) {
+        var formattedItem = HTMLtoDoItem.replace("%classname%", 'hidden');
+      } else {
+        var formattedItem = HTMLtoDoItem.replace("%classname%", '');
+      }
+
+      var todoItem = formattedItem.replace("%data%", itemValue);
+      this.innerHTML = todoItem;
+      }
+    }
+  })
+}
+
 /* Hide Footer */
 function hideFooter() {
   if(document.getElementsByClassName('view').length === 0) {

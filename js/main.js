@@ -22,7 +22,6 @@ document.getElementById('input-form').onkeypress = function(e){
 }
 
 /* All Button */
-
 document.querySelector('.btn-all').onclick = function() {
   selectedButton(this);
   document.querySelectorAll('.view').forEach(function(div) {
@@ -70,14 +69,14 @@ document.getElementById('toggle-all').onclick = function() {
   if(this.checked) {
     document.querySelectorAll('.view').forEach(function(div) {
       div.parentNode.classList.add('completed');
-      div.querySelector('.destroy').checked = true;
+      div.querySelector('.toggle').checked = true;
     });
     document.getElementById('btn-clear').style.display = "block";
     itemCount();
   } else {
     document.querySelectorAll('.view').forEach(function(div) {
       div.parentNode.classList.remove('completed');
-      div.querySelector('.destroy').checked = false;
+      div.querySelector('.toggle').checked = false;
     });
     document.getElementById('btn-clear').style.display = "none";
     itemCount();
