@@ -1,6 +1,6 @@
 /* Create Todo List Item */
 document.getElementById('input-form').onkeypress = function(e){
-  if(e.keyCode === 13) {
+  if(e.keyCode === 13 || e.which === 13) {
     var itemValue = this.value;
     if (itemValue === '') { return; };
     this.value = '';

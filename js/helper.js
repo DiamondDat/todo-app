@@ -19,34 +19,42 @@ function editTodoItem() {
     li.ondblclick = function() {
       this.classList.add('editing');
       this.querySelector('.view').style.display = 'none';
-
-      document.onclick = function(e) {
-        if(e.target !== li.querySelector('.edit')) {
-          if(li.querySelector('.edit').value === '') {
-            li.remove();
-            itemCount();
-            hideFooter(); };
-          li.classList.remove('editing');
-          li.querySelector('.view').style.display = 'block';
-        }
-      }
+      inputEdit(li);
+      cancelEdit(li);
     }
   });
-  inputEditItem();
 }
 
-/* Input edit item */
-function inputEditItem() {
-  document.querySelectorAll('.editing').forEach(function(li) {
-   li.querySelector('.edit').onkeypress = function(e) {
-    if(e.keycode === 13) {
-      var itemValue = this.value;
-      if (itemValue === '') { this.parentNode.remove(); }
-
-      this.innerHTML = inputTodoItem(itemValue);
-      }
+/* Input Edit */
+function inputEdit(node) {
+  node.querySelector('.edit').onkeypress = function(e) {
+    if(e.keycode === 13 || e.which === 13) {
+      removeItem(node);
+      node.querySelector('label').innerHTML = node.querySelector('.edit').value;
+      node.classList.remove('editing');
+      node.querySelector('.view').style.display = 'block';
     }
-  })
+  }
+}
+
+/* Cancel Edit */
+function cancelEdit(node) {
+  document.onclick = function(e) {
+    if(e.target !== node.querySelector('.edit')) {
+      removeItem(node);
+      node.classList.remove('editing');
+      node.querySelector('.view').style.display = 'block';
+    }
+  }
+}
+
+/* Remove Item */
+function removeItem(node) {
+  if(node.querySelector('.edit').value === '') {
+    node.remove();
+    itemCount();
+    hideFooter();
+  }
 }
 
 /* Hide Footer */
