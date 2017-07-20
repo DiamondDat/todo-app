@@ -1,36 +1,50 @@
-var HTMLtoDoItem = '<li class="%classname%"><div class="view"><input class="toggle" type="checkbox"><label>%data%</label><button class="destroy">X</button></div></li>';
-var HTMLeditToDoItem = '<input class="edit" value="%data%">';
+var HTMLtoDoItem = '<li class="%classname%"><div class="view"><input class="toggle" type="checkbox"><label>%data%</label><button class="destroy">X</button></div><input class="edit" value="%data%" autofocus></li>';
+/* Input Todo Item */
+function inputTodoItem(value) {
+  if(document.querySelector('.btn-complete').classList.contains('selected')) {
+    var formattedItem = HTMLtoDoItem.replace("%classname%", 'hidden');
+  } else {
+    var formattedItem = HTMLtoDoItem.replace("%classname%", '');
+  }
+
+  var todoItem = formattedItem.replace("%data%", value);
+  var formattedTodoItem = todoItem.replace("%data%", value);
+  return formattedTodoItem;
+}
 
 /* Edit Todo Item */
 function editTodoItem() {
-  document.querySelectorAll('.view').forEach(function(div) {
-    var tmp = div;
-    div.ondblclick = function() {
-      var itemValue = div.querySelector('label').innerHTML;
-      var editItem = HTMLeditToDoItem.replace("%data%", itemValue);
-
-      this.innerHTML = editItem;
+  document.querySelectorAll('li').forEach(function(li) {
+    li.ondblclick = function() {
+      this.classList.add('editing');
+      this.querySelector('.view').style.display = 'none';
     }
-    // inputEditItem();
+  });
+  cancelEdit();
+  inputEditItem();
+}
+
+/* Cancel Edit */
+function cancelEdit() {
+  document.querySelectorAll('li').forEach(function(li) {
+    document.onclick = function() {
+      if(li.classList.contains('editing')) {
+        li.classList.remove('editing');
+        li.querySelector('.view').style.display = 'block';
+      }
+    }
   });
 }
 
 /* Input edit item */
 function inputEditItem() {
-  document.querySelectorAll('.view').forEach(function(div) {
-   div.querySelector('.edit').onkeypress = function(e) {
+  document.querySelectorAll('.editing').forEach(function(li) {
+   li.querySelector('.edit').onkeypress = function(e) {
     if(e.keycode === 13) {
       var itemValue = this.value;
-      if (itemValue === '') { div.parentNode.remove(); }
+      if (itemValue === '') { this.parentNode.remove(); }
 
-      if(document.querySelector('.btn-complete').classList.contains('selected')) {
-        var formattedItem = HTMLtoDoItem.replace("%classname%", 'hidden');
-      } else {
-        var formattedItem = HTMLtoDoItem.replace("%classname%", '');
-      }
-
-      var todoItem = formattedItem.replace("%data%", itemValue);
-      this.innerHTML = todoItem;
+      this.innerHTML = inputTodoItem(itemValue);
       }
     }
   })

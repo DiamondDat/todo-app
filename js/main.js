@@ -5,21 +5,17 @@ document.getElementById('input-form').onkeypress = function(e){
     if (itemValue === '') { return; };
     this.value = '';
 
-    if(document.querySelector('.btn-complete').classList.contains('selected')) {
-      var formattedItem = HTMLtoDoItem.replace("%classname%", 'hidden');
-    } else {
-      var formattedItem = HTMLtoDoItem.replace("%classname%", '');
-    }
-
-    var todoItem = formattedItem.replace("%data%", itemValue);
-    document.getElementById('todo-list').insertAdjacentHTML('beforeend', todoItem);
+    document.getElementById('todo-list').insertAdjacentHTML('beforeend', inputTodoItem(itemValue));
 
     document.querySelector('footer').style.display = 'block';
+    document.getElementById('toggle-all').checked = false;
     itemCount();
   }
-  removeTodoItem();
   completedItem();
+  editTodoItem();
+  removeTodoItem();
 }
+
 
 /* All Button */
 document.querySelector('.btn-all').onclick = function() {
